@@ -1,1 +1,1 @@
-My personal website ::ribbon::
+My personal website :ribbon:
