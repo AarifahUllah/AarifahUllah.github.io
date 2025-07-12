@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aarifah Ullah</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+</head>
+
+<body>
+    <!-- Banner / Navbar -->
+    <nav class="navbar navbar-expand-md bg-light navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Aarifah Ullah</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/portfolio">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/publications">Publications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container py-5">
+        <h2 class="fw-bold mb-4">Pictures Coming Soon!</h2>
+        <p class="mb-4 fs-5 text-muted"> </p>
+        <p>
+            Currently, I'm working as a Research Assistant at the Intelligent Autonomous Systems Lab (IASL) under Prof.
+            Peng Wei.
+            Funded by NASA, FAA, and NSF, I look into drone delivery in densely populated and suburban areas.
+        </p>
+        <p>
+            I'm looking into a 3D-visualization feature that lets the user see what the drone perceives using Unity.
+            This is useful in object avoidance and collision, especially since drones share the same space as other
+            drones but also birds and wildlife.
+        </p>
+        <p>
+            In addition to that, I work with IsaacSim in in developing the drone behavior in a simulated world, and
+            deploy it to a real-life chassis. The drone utilizes multiple camera sensors and a vision language model.
+            Much emphasis is given towards safety with different protocols in place for when persons are present.
+        </p>
+    </div>
+    </div>
+
+    <!-- Bootstrap JS (Optional for navbar toggling etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
