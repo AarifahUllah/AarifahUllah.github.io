@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aarifah Ullah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── HOLOGRAPHIC / PEARLESCENT PALETTE ── */
+:root{
+  --bg:#F5F2FC;--surface:#FFF;--elevated:#EDE6F8;
+  --vi:#8B6EC4;--vi-lt:#A882D8;
+  --rose:#B87FA0;--rose-lt:#CE98BC;
+  --ice:#5A92B8;--ice-lt:#72A8D2;
+  --text:#150E28;--text2:#4B3C6E;--muted:#8A7AAC;
+  --border:rgba(139,110,196,.13);--nav-bg:rgba(245,242,252,.9);
+  --hero-bg:#07091A;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C0918;--surface:#16112A;--elevated:#221A3A;
+  --vi:#C498F0;--vi-lt:#D8B4FF;
+  --rose:#E898C8;--rose-lt:#F0B4DA;
+  --ice:#7ABAE0;--ice-lt:#96CEF0;
+  --text:#F2EAFF;--text2:#B8A8D8;--muted:#5A4A80;
+  --border:rgba(196,152,240,.15);--nav-bg:rgba(12,9,24,.9);
+}}
+:root[data-theme="dark"]{
+  --bg:#0C0918;--surface:#16112A;--elevated:#221A3A;
+  --vi:#C498F0;--vi-lt:#D8B4FF;
+  --rose:#E898C8;--rose-lt:#F0B4DA;
+  --ice:#7ABAE0;--ice-lt:#96CEF0;
+  --text:#F2EAFF;--text2:#B8A8D8;--muted:#5A4A80;
+  --border:rgba(196,152,240,.15);--nav-bg:rgba(12,9,24,.9);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;text-wrap:balance;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--vi);outline-offset:3px}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;background:var(--nav-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2rem;gap:2rem}
+.nav-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.05em;color:var(--text);margin-right:auto}
+.nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);transition:color .2s}
+.nav-links a:hover{color:var(--vi)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:.28rem .8rem;font-size:.72rem;cursor:pointer;color:var(--muted);font-family:'Outfit',sans-serif;transition:all .2s}
+.theme-btn:hover{border-color:var(--vi);color:var(--vi)}
+
+/* ── HERO — always dark ── */
+#hero{position:relative;min-height:100vh;background:var(--hero-bg);display:flex;align-items:center;overflow:hidden}
+#hero::before,#hero::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0}
+#hero::before{
+  background:radial-gradient(ellipse 80% 60% at 12% 45%,rgba(160,100,240,.16) 0%,transparent 68%),
+              radial-gradient(ellipse 60% 50% at 82% 68%,rgba(210,110,168,.13) 0%,transparent 62%);
+  animation:aur1 9s ease-in-out infinite alternate;
+}
+#hero::after{
+  background:radial-gradient(ellipse 65% 52% at 52% 18%,rgba(80,145,210,.12) 0%,transparent 62%),
+              radial-gradient(ellipse 48% 58% at 28% 88%,rgba(170,200,240,.08) 0%,transparent 55%);
+  animation:aur2 11s ease-in-out infinite alternate;
+}
+@keyframes aur1{0%{opacity:.55;transform:scale(1)}100%{opacity:1;transform:scale(1.07) translate(2%,1%)}}
+@keyframes aur2{0%{opacity:1;transform:scale(1.04) translate(-1%,-2%)}100%{opacity:.65;transform:scale(.96) translate(1%,2%)}}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+
+.hero-inner{position:relative;z-index:2;max-width:960px;margin:0 auto;padding:7rem 2rem 5rem;width:100%}
+.hero-eyebrow{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#C498F0;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:#C498F0;flex-shrink:0}
+.hero-name{font-size:clamp(4.5rem,12vw,10rem);font-weight:800;line-height:.9;letter-spacing:-.025em;color:#F2EAFF;margin-bottom:1.75rem}
+.hero-name-prism{
+  display:block;
+  background:linear-gradient(120deg,#C498F0 0%,#E898C8 33%,#90C8E8 66%,#C498F0 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:prism 5s linear infinite;
+}
+@keyframes prism{0%{background-position:0% 0%}100%{background-position:200% 0%}}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin-bottom:1.75rem}
+.hero-tag{font-family:'Barlow Condensed',sans-serif;font-size:clamp(1rem,2vw,1.3rem);font-weight:400;color:#9AA8C8;letter-spacing:.04em;display:flex;align-items:center;gap:.5rem}
+.hero-tag::before{content:'—';color:#C498F0;font-size:.85em}
+.hero-desc{font-size:1rem;color:#9AA8C8;max-width:520px;line-height:1.75;margin-bottom:2.5rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.65rem;align-items:center}
+.btn-prism{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#8B6EC4,#B87FA0);color:#fff;padding:.62rem 1.4rem;border-radius:3px;font-weight:600;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;transition:all .2s;border:none;cursor:pointer}
+.btn-prism:hover{opacity:.88;transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;border:1px solid rgba(235,240,245,.22);color:#F2EAFF;padding:.62rem 1.4rem;border-radius:3px;font-weight:500;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;transition:all .2s}
+.btn-ghost:hover{border-color:#C498F0;color:#C498F0}
+.hero-stats{position:absolute;bottom:2.5rem;right:2rem;display:flex;gap:2.25rem}
+.hstat-n{font-family:'Barlow Condensed',sans-serif;font-size:2.1rem;font-weight:700;color:#F2EAFF;line-height:1;font-variant-numeric:tabular-nums}
+.hstat-l{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:#9AA8C8;margin-top:.2rem}
+
+/* ── SECTIONS ── */
+.sec{padding:5rem 2rem}.sec.alt{background:var(--surface)}
+.wrap{max-width:960px;margin:0 auto}
+.eyebrow{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--vi);margin-bottom:.65rem;display:flex;align-items:center;gap:.65rem}
+.eyebrow::before{content:'';width:18px;height:1px;background:var(--vi);flex-shrink:0}
+.sec-title{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:700;color:var(--text);line-height:1.0;margin-bottom:.5rem}
+.sec-sub{font-size:.95rem;color:var(--text2);max-width:500px;line-height:1.75;margin-bottom:3rem}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-body{font-size:.95rem;color:var(--text2);line-height:1.8;margin-bottom:1.25rem}
+.creds{display:flex;flex-direction:column;gap:.6rem}
+.cred{display:flex;align-items:flex-start;gap:.75rem;padding:.85rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:4px;transition:border-color .2s}
+.cred:hover{border-color:var(--vi)}
+.cred-icon{font-size:.95rem;flex-shrink:0;margin-top:.1rem}
+.cred-main{font-size:.84rem;font-weight:500;color:var(--text);line-height:1.3}
+.cred-sub{font-size:.74rem;color:var(--muted);margin-top:.15rem}
+
+/* ── RESEARCH ── */
+.r-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2.5rem}
+.r-card{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:1.75rem;position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.r-card:hover{border-color:var(--vi-lt);transform:translateY(-2px)}
+.r-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--vi),var(--rose),var(--ice))}
+.r-tag{display:inline-block;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ice);background:rgba(90,146,184,.1);padding:.18rem .55rem;border-radius:2px;margin-bottom:.9rem}
+.r-phd-badge{display:inline-block;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--vi);background:rgba(139,110,196,.1);border:1px solid rgba(139,110,196,.3);padding:.18rem .55rem;border-radius:2px;margin-bottom:.9rem;margin-left:.4rem}
+.r-card h3{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.2}
+.r-card p{font-size:.86rem;color:var(--text2);line-height:1.7;margin-bottom:.85rem}
+.r-tools{font-size:.78rem;color:var(--muted);margin-bottom:1rem;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.04em}
+.r-kws{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1rem}
+.kw{font-size:.68rem;color:var(--muted);border:1px solid var(--border);padding:.18rem .5rem;border-radius:2px}
+.r-funding{font-size:.7rem;font-weight:500;color:var(--muted);padding-top:.75rem;border-top:1px solid var(--border)}
+
+/* ── PATENT ── */
+.patent-wrap{padding:2.5rem;background:var(--bg);border:1px solid var(--border);border-radius:5px;display:grid;grid-template-columns:120px 1px 1fr;gap:2.5rem;align-items:center;position:relative;overflow:hidden}
+.patent-wrap::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--vi),var(--rose))}
+.patent-meta-col{text-align:center}
+.patent-status-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.patent-status{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;font-weight:600;color:var(--vi);line-height:1.3}
+.patent-div{width:1px;background:var(--border);align-self:stretch}
+.patent-title-text{font-family:'Barlow Condensed',sans-serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.4rem;line-height:1.2}
+.patent-inv{font-size:.82rem;color:var(--text2);margin-bottom:.85rem}
+.patent-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--vi);border:1px solid var(--vi);padding:.22rem .7rem;border-radius:2px}
+
+/* ── PUBLICATIONS ── */
+.pub-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
+.pub-item{padding:1.6rem 0;border-bottom:1px solid var(--border)}
+.pub-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.55rem;flex-wrap:wrap}
+.pub-badge{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .55rem;border-radius:2px}
+.pub-badge.prep{color:var(--vi);background:rgba(139,110,196,.1);border:1px solid rgba(139,110,196,.25)}
+.pub-badge.review{color:var(--rose);background:rgba(184,127,160,.1);border:1px solid rgba(184,127,160,.25)}
+.pub-venue{font-size:.74rem;color:var(--muted)}
+.pub-title{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:.35rem;line-height:1.25}
+.pub-authors{font-size:.8rem;color:var(--text2)}
+
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;border-top:1px solid var(--border)}
+.exp-item{display:grid;grid-template-columns:190px 1fr;gap:2.5rem;padding:2rem 0;border-bottom:1px solid var(--border)}
+.exp-date{font-size:.78rem;font-weight:500;color:var(--muted);padding-top:.1rem}
+.exp-org{font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ice);margin-bottom:.3rem}
+.exp-role{font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:.45rem;line-height:1.15}
+.exp-desc{font-size:.87rem;color:var(--text2);line-height:1.7}
+
+/* ── AWARDS ── */
+.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:2.5rem}
+.award{padding:1.1rem 1.2rem;border:1px solid var(--border);border-radius:4px;background:var(--surface);transition:border-color .2s}
+.award:hover{border-color:var(--vi)}
+.award-yr{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--vi);margin-bottom:.35rem}
+.award-name{font-size:.88rem;font-weight:600;color:var(--text);line-height:1.3}
+.award-org{font-size:.74rem;color:var(--muted);margin-top:.2rem}
+.skill-row{display:flex;flex-wrap:wrap;gap:.35rem;padding-top:2rem;border-top:1px solid var(--border)}
+.chip{font-size:.75rem;padding:.28rem .7rem;border:1px solid var(--border);border-radius:2px;color:var(--text2);background:var(--bg)}
+
+/* ── CONTACT ── */
+#contact{background:#07091A;padding:5rem 2rem}
+.contact-inner{max-width:700px;margin:0 auto;text-align:center}
+.contact-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,6vw,4.5rem);font-weight:700;color:#F2EAFF;line-height:1.0;margin-bottom:1rem}
+.contact-sub{color:#9AA8C8;font-size:.97rem;margin-bottom:2rem;line-height:1.7}
+.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem}
+.contact-link{display:inline-flex;align-items:center;gap:.5rem;color:#F2EAFF;border:1px solid rgba(235,240,245,.2);padding:.62rem 1.25rem;border-radius:3px;font-size:.82rem;font-weight:500;letter-spacing:.05em;transition:all .2s}
+.contact-link:hover{border-color:#C498F0;color:#C498F0}
+footer{background:#040610;padding:1.4rem 2rem;text-align:center;font-size:.72rem;color:#3A3460;letter-spacing:.05em}
+
+@media(max-width:700px){
+  .about-grid,.r-grid{grid-template-columns:1fr;gap:2rem}
+  .exp-item{grid-template-columns:1fr;gap:.4rem}
+  .awards-grid{grid-template-columns:1fr 1fr}
+  .patent-wrap{grid-template-columns:1fr;gap:1.25rem}
+  .patent-div{display:none}
+  .patent-wrap::after{top:0;left:0;right:0;bottom:auto;width:100%;height:3px}
+  .hero-stats{position:static;margin-top:3rem;gap:2rem}
+  .nav-links{display:none}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">AARIFAH ULLAH</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#patent">Patent</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="theme-btn" onclick="toggleTheme()">◐ Theme</button>
+</nav>
+
+<section id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">PhD Researcher · GWU SEAS · Washington, DC</div>
+    <h1 class="hero-name">
+      AARIFAH<br>
+      <span class="hero-name-prism">ULLAH</span>
+    </h1>
+    <div class="hero-tags">
+      <span class="hero-tag">Multi-Agent RL · UAV Autonomy</span>
+      <span class="hero-tag">Computer Vision</span>
+      <span class="hero-tag">Cybersecurity Research</span>
+    </div>
+    <p class="hero-desc">Building intelligent systems that operate at the edge — autonomous UAV swarms, CV-based collision avoidance, and electronic warfare analysis. Researcher, engineer, and sole patent inventor.</p>
+    <div class="hero-actions">
+      <a href="#research" class="btn-prism">View Research ↓</a>
+      <a href="https://linkedin.com/in/aarifah-ullah" class="btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:aarifahullah@gwu.edu" class="btn-ghost">Email</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hstat-n">1</div><div class="hstat-l">Patent Issued</div></div>
+    <div><div class="hstat-n">3</div><div class="hstat-l">Research Labs</div></div>
+    <div><div class="hstat-n">13</div><div class="hstat-l">Team Led</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec alt" id="about"><div class="wrap"><div class="about-grid">
+  <div>
+    <div class="eyebrow">About</div>
+    <h2 class="sec-title">At the edge of three fields</h2>
+    <p class="about-body">I'm a PhD student at George Washington University working at the intersection of AI, autonomous systems, and security. What's unusual about my profile isn't any single domain — it's that I operate across all three simultaneously, with hardware in hand and a clearance in pocket.</p>
+    <p class="about-body">I've built drone autonomy systems from the ground up (with an FAA Part 107 certificate to fly them), analyzed binary vulnerabilities for defense applications, and hold a patent as sole inventor in autonomous vehicle navigation — before finishing my undergraduate degree. That range isn't incidental. It's the point.</p>
+  </div>
+  <div class="creds">
+    <div class="cred"><span class="cred-icon">🎓</span><div><div class="cred-main">PhD Candidate, Computer Science</div><div class="cred-sub">George Washington University · SEAS</div></div></div>
+    <div class="cred"><span class="cred-icon">🛸</span><div><div class="cred-main">FAA Certified Remote Pilot · Part 107</div><div class="cred-sub">Licensed for commercial UAS operations · 2024–2026</div></div></div>
+    <div class="cred"><span class="cred-icon">🔐</span><div><div class="cred-main">Security Clearance</div><div class="cred-sub">Held during co-op at RTX BBN Technologies</div></div></div>
+    <div class="cred"><span class="cred-icon">⚡</span><div><div class="cred-main">Certified in Cybersecurity · ISC²</div><div class="cred-sub">June 2025 – June 2027</div></div></div>
+    <div class="cred"><span class="cred-icon">📐</span><div><div class="cred-main">BS Electrical Engineering + BS Computer Science</div><div class="cred-sub">Accelerated MS Cybersecurity · GWU · GPA 3.35</div></div></div>
+  </div>
+</div></div></section>
+
+<!-- RESEARCH -->
+<section class="sec" id="research"><div class="wrap">
+  <div class="eyebrow">Research</div>
+  <h2 class="sec-title">Active Research</h2>
+  <p class="sec-sub">PhD work at the intersection of multi-agent reinforcement learning, computer vision, and autonomous aerial systems.</p>
+  <div class="r-grid">
+    <div class="r-card">
+      <span class="r-tag">UAV Autonomy · MARL</span><span class="r-phd-badge">PhD Focus</span>
+      <h3>Multi-Agent RL for Autonomous UAV Swarms</h3>
+      <p>Developing MARL frameworks for coordinating UAV swarms in contested urban airspace. Research spans Graph MARL architectures enabling emergent collision avoidance without centralized control.</p>
+      <p>CV-based perception pipeline: real-time depth estimation and object detection for onboard collision avoidance under the compute constraints of small UAV platforms.</p>
+      <div class="r-tools">Isaac Sim · Gazebo · ROS 2 · PyTorch · OpenCV</div>
+      <div class="r-kws"><span class="kw">MARL</span><span class="kw">Graph Neural Networks</span><span class="kw">Computer Vision</span><span class="kw">Collision Avoidance</span><span class="kw">Swarm Coordination</span></div>
+      <div class="r-funding">GWU Intelligent Aerospace Systems Lab · NASA / NSF / FAA</div>
+    </div>
+    <div class="r-card">
+      <span class="r-tag">Graph Theory · Infrastructure</span>
+      <h3>Electric Grid Resilience via Graph Optimization</h3>
+      <p>Applying graph neural networks and optimization to modernize aging electric grid infrastructure. Time-series modeling for energy demand forecasting; structural analysis to identify resilience gaps.</p>
+      <div class="r-tools">Python · NetworkX · TensorFlow · PyTorch</div>
+      <div class="r-kws"><span class="kw">GNN</span><span class="kw">Time-Series Forecasting</span><span class="kw">Energy Systems</span><span class="kw">Resilience Optimization</span></div>
+      <div class="r-funding">GWU Graph Lab · Electric Grid Modernization Initiative</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- PATENT -->
+<section class="sec alt" id="patent"><div class="wrap">
+  <div class="eyebrow">Patents</div>
+  <h2 class="sec-title">Sole Inventor</h2>
+  <p class="sec-sub">A patent issued as sole inventor before finishing an undergraduate degree.</p>
+  <div class="patent-wrap">
+    <div class="patent-meta-col"><div class="patent-status-label">Status</div><div class="patent-status">Issued<br>Nov. 2025</div></div>
+    <div class="patent-div"></div>
+    <div>
+      <div class="patent-title-text">"Systems and Methods of Facilitating Navigation of Autonomous Vehicles"</div>
+      <div class="patent-inv">Aarifah Ullah · Sole Inventor · United States Patent</div>
+      <span class="patent-badge">✓ Sole Inventor</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- PUBLICATIONS -->
+<section class="sec" id="publications"><div class="wrap">
+  <div class="eyebrow">Research Output</div>
+  <h2 class="sec-title">Publications</h2>
+  <p class="sec-sub">Ongoing work in multi-agent learning, autonomous systems, and computer vision. Updated as manuscripts progress.</p>
+  <div class="pub-list">
+    <div class="pub-item">
+      <div class="pub-meta">
+        <span class="pub-badge prep">In Preparation</span>
+        <span class="pub-venue">Target: IROS / ICRA</span>
+      </div>
+      <div class="pub-title">Decentralized Collision Avoidance in Multi-UAV Systems via Graph Multi-Agent Reinforcement Learning</div>
+      <div class="pub-authors">A. Ullah et al. · GWU Intelligent Aerospace Systems Lab</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-meta">
+        <span class="pub-badge prep">In Preparation</span>
+        <span class="pub-venue">Target: CVPR / ICRA</span>
+      </div>
+      <div class="pub-title">Vision-Based Obstacle Detection for Onboard UAV Autonomy under Compute Constraints</div>
+      <div class="pub-authors">A. Ullah et al. · GWU Intelligent Aerospace Systems Lab</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- EXPERIENCE -->
+<section class="sec alt" id="experience"><div class="wrap">
+  <div class="eyebrow">Experience</div>
+  <h2 class="sec-title">Industry &amp; Leadership</h2>
+  <p class="sec-sub">Research paired with hands-on engineering across defense, aerospace, and academia.</p>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-date">Jan 2026 – May 2026</div>
+      <div>
+        <div class="exp-org">RTX BBN Technologies · Columbia, MD</div>
+        <div class="exp-role">Cyber/Electronic Warfare Research Engineer I</div>
+        <div class="exp-desc">Graduate co-op in offensive and defensive cyber research. Binary analysis with Ghidra — reverse engineering to assess vulnerabilities in cyber-physical systems in contested environments.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">May 2025 – Present</div>
+      <div>
+        <div class="exp-org">GWU Intelligent Aerospace Systems Lab · NASA / NSF / FAA</div>
+        <div class="exp-role">Research Assistant — Urban Air Mobility</div>
+        <div class="exp-desc">Developing simulation-based flight procedures for autonomous UAVs. Investigating MARL-based control and CV-driven collision avoidance in Isaac Sim, Gazebo, and ROS 2.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">May 2025 – Present</div>
+      <div>
+        <div class="exp-org">GWU Graph Lab</div>
+        <div class="exp-role">Research Assistant — Electric Grid Optimization</div>
+        <div class="exp-desc">Electric grid modernization using graph theory, time-series energy demand forecasting, and graph-based network modeling of grid infrastructure.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Apr 2024 – Apr 2025</div>
+      <div>
+        <div class="exp-org">GWU · Sponsored by Raytheon Technologies</div>
+        <div class="exp-role">Team Captain &amp; Project Manager — Autonomous Vehicle Capstone</div>
+        <div class="exp-desc">Led a 13-member engineering team with a $15,000 budget to build a fully operational autonomous aerial platform. Won Most Innovative Design Award and SEAS Pelton Design Award.</div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- AWARDS -->
+<section class="sec" id="awards"><div class="wrap">
+  <div class="eyebrow">Recognition</div>
+  <h2 class="sec-title">Awards &amp; Certifications</h2>
+  <div class="awards-grid">
+    <div class="award"><div class="award-yr">2024–25</div><div class="award-name">Most Innovative Design Award</div><div class="award-org">Raytheon Autonomous Vehicle Competition</div></div>
+    <div class="award"><div class="award-yr">2024–25</div><div class="award-name">SEAS Pelton Capstone Design Award</div><div class="award-org">GWU School of Engineering</div></div>
+    <div class="award"><div class="award-yr">2024</div><div class="award-name">Dean's List — Spring &amp; Fall</div><div class="award-org">George Washington University</div></div>
+    <div class="award"><div class="award-yr">Ongoing</div><div class="award-name">Presidential Academic Scholarship</div><div class="award-org">George Washington University</div></div>
+    <div class="award"><div class="award-yr">2024–26</div><div class="award-name">FAA Certified Remote Pilot · Part 107</div><div class="award-org">Federal Aviation Administration</div></div>
+    <div class="award"><div class="award-yr">2025–27</div><div class="award-name">Certified in Cybersecurity (CC)</div><div class="award-org">ISC² Certification</div></div>
+  </div>
+  <div class="skill-row">
+    <span class="chip">Python</span><span class="chip">C</span><span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Multi-Agent RL</span><span class="chip">Computer Vision</span><span class="chip">ROS 1 &amp; 2</span><span class="chip">Isaac Sim</span><span class="chip">Gazebo</span><span class="chip">Ghidra</span><span class="chip">MATLAB</span><span class="chip">Assembly</span><span class="chip">Verilog</span><span class="chip">Linux</span><span class="chip">Control Theory</span>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section id="contact"><div class="contact-inner">
+  <h2 class="contact-title">Let's Connect</h2>
+  <p class="contact-sub">Open to research collaborations, advising conversations, and industry inquiries in autonomous systems, AI security, and related fields.</p>
+  <div class="contact-links">
+    <a href="mailto:aarifahullah@gwu.edu" class="contact-link">✉ aarifahullah@gwu.edu</a>
+    <a href="https://linkedin.com/in/aarifah-ullah" class="contact-link" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a href="https://github.com/AarifahUllah" class="contact-link" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</div></section>
+<footer>© 2026 Aarifah Ullah · George Washington University · Washington, DC</footer>
+
+<script>
+/* ── Theme ── */
+(function(){try{const s=localStorage.getItem('au-theme');if(s)document.documentElement.setAttribute('data-theme',s)}catch(e){}})();
+function toggleTheme(){const r=document.documentElement,c=r.getAttribute('data-theme'),sys=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light',next=!c?(sys==='dark'?'light':'dark'):c==='dark'?'light':null;next?r.setAttribute('data-theme',next):r.removeAttribute('data-theme');try{localStorage.setItem('au-theme',next||'')}catch(e){}}
+
+/* ── Canvas: pearlescent nodes + lazy paper airplane ── */
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,frame=0,nodes=[];
+
+  const NC=[
+    a=>`rgba(196,152,240,${a})`,
+    a=>`rgba(232,152,200,${a})`,
+    a=>`rgba(122,186,224,${a})`,
+    a=>`rgba(210,180,245,${a})`,
+    a=>`rgba(170,215,240,${a})`,
+  ];
+
+  function initNodes(){
+    nodes=Array.from({length:44},(_,i)=>({
+      x:Math.random()*W,y:Math.random()*H,
+      vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2,
+      r:Math.random()*1.1+.45,col:NC[i%NC.length]
+    }));
+  }
+
+  function drawNodes(){
+    for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<115){ctx.strokeStyle=`rgba(196,152,240,${(1-d/115)*.11})`;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke();}
+    }
+    nodes.forEach(n=>{
+      ctx.fillStyle=n.col(.3);ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;
+    });
+  }
+
+  const pl={state:'wait',timer:80,x:-130,baseY:0,vx:0,alpha:0};
+  function resetPlane(){pl.x=-130;pl.baseY=H*(0.22+Math.random()*.22);pl.vx=1.2+Math.random()*.35;pl.alpha=0;pl.state='fly';}
+  function updatePlane(){
+    if(pl.state==='wait'){if(--pl.timer<=0)resetPlane();return;}
+    pl.alpha=Math.min(1,pl.alpha+.022);pl.x+=pl.vx;
+    if(pl.x>W+130){pl.state='wait';pl.timer=220;}
+  }
+
+  function drawPaperPlane(){
+    if(pl.state==='wait')return;
+    const py=pl.baseY+Math.sin(frame*.022)*8,ang=-0.032+Math.sin(frame*.022+1.57)*.022,L=80,M=11;
+    ctx.save();ctx.globalAlpha=pl.alpha;ctx.translate(pl.x,py);ctx.rotate(ang);
+    const wg=ctx.createLinearGradient(0,M,L,M+22);
+    wg.addColorStop(0,'rgba(172,195,212,.92)');wg.addColorStop(1,'rgba(112,138,160,.87)');
+    ctx.fillStyle=wg;ctx.beginPath();
+    ctx.moveTo(0,M);ctx.lineTo(35,M-9);ctx.lineTo(80,M+1);ctx.lineTo(80,M+5);ctx.lineTo(58,M+22);ctx.lineTo(12,M+9);
+    ctx.closePath();ctx.fill();
+    const fg=ctx.createLinearGradient(0,M-9,L,M+1);
+    fg.addColorStop(0,'rgba(228,238,248,.97)');fg.addColorStop(1,'rgba(176,198,218,.93)');
+    ctx.fillStyle=fg;ctx.beginPath();
+    ctx.moveTo(0,M);ctx.lineTo(35,M-9);ctx.lineTo(80,M+1);ctx.lineTo(44,M+1);ctx.lineTo(8,M+2);
+    ctx.closePath();ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.72)';ctx.lineWidth=1.1;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(1,M);ctx.lineTo(35,M-9);ctx.stroke();
+    ctx.strokeStyle='rgba(80,108,132,.28)';ctx.lineWidth=.55;
+    ctx.beginPath();ctx.moveTo(7,M+1.5);ctx.lineTo(80,M+1);ctx.stroke();
+    ctx.restore();
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    ctx.save();ctx.globalAlpha=.52;drawNodes();ctx.restore();
+    updatePlane();drawPaperPlane();
+    frame++;requestAnimationFrame(tick);
+  }
+
+  function resize(){
+    W=canvas.offsetWidth;H=canvas.offsetHeight;
+    canvas.width=W*devicePixelRatio;canvas.height=H*devicePixelRatio;
+    ctx.scale(devicePixelRatio,devicePixelRatio);
+  }
+  window.addEventListener('resize',()=>{resize();initNodes();});
+  resize();initNodes();tick();
+})();
+</script>
+</body>
+</html>
